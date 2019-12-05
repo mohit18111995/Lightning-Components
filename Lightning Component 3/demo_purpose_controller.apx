@@ -1,0 +1,45 @@
+public class demo_purpose_controller { 
+
+    @AuraEnabled  
+
+    public static List<String> getAllObjectName()  
+
+    {  
+
+        List<Schema.SObjectType> gd = Schema.getGlobalDescribe().Values();       
+
+        List<SelectOption> options = new List<SelectOption>();       
+
+        List < String > allOpts = new list < String > ();  
+
+        options.add(new SelectOption('--None--','--None--'));  
+
+        for(Schema.SObjectType f : gd){  
+
+            options.add(new SelectOption(f.getDescribe().getName(),f.getDescribe().getName()));  
+
+        }          
+
+        for (SelectOption a: options) {  
+
+            allOpts.add(a.getValue());  
+
+        }        
+
+        allOpts.sort();          
+
+        return allOpts;  
+
+    }         
+
+    @AuraEnabled 
+
+    public static List<sObject> GetAvailableRecordTypeAccount(String sobj) 
+
+    {                        
+
+        return [SELECT Id, Name, Description FROM RecordType WHERE SobjectType =: sobj];           
+
+    }     
+
+} 
