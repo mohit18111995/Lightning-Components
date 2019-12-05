@@ -1,0 +1,61 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" controller="DeleteWithCheckboxController"> 
+
+    <aura:attribute name="AccountList" type="List" /> 
+
+    <aura:attribute name="CountSelect" type="Integer" default="0"/> 
+
+    <aura:handler name="init" value="{!this}" action="{!c.LoadAccountList}" /> 
+
+    <span>Account Selected:{!v.CountSelect}</span> 
+
+    <div> 
+
+        <button onclick="{!c.DeleteRecord}" label="Delete" text="delete">Delete</button> 
+
+    </div> 
+
+    <thead> 
+
+        <tr> 
+
+            <th><div><ui:inputcheckbox aura:id="cbox" change="{!c.selectAll}"/></div></th> 
+
+            <th> <div>ID</div></th> 
+
+            <th><div>Name</div></th> 
+
+        </tr> 
+
+    </thead> 
+
+    <tbody> 
+
+        <aura:iteration items="{!v.AccountList}" var="acc"> 
+
+            <tr> 
+
+                <td><ui:inputcheckbox aura:id="boxpack" text="{!acc.Id}" value="" change="{!c.checkboxSelect}"/></td> 
+
+                <td>{!acc.Id}</td> 
+
+                <td>{!acc.Name}</td> 
+
+                <td> 
+
+                    <lightning:buttonMenu aura:id="{!acc.Id}"  onselect="{! c.handleSelect }" alternativeText="Show menu" class = "{!acc.Id}"> 
+
+                        <lightning:menuItem value="{!join(',', acc.Id, 'Edit')}" label="Edit" /> 
+
+                        <lightning:menuItem value="{!join(',', acc.Id, 'Delete')}" label="Delete" /> 
+
+                    </lightning:buttonMenu>  
+
+                </td> 
+
+            </tr> 
+
+        </aura:iteration>     
+
+    </tbody> 
+
+</aura:component> 
