@@ -1,0 +1,15 @@
+public class demo_purpose_controller { 
+
+    @AuraEnabled 
+
+   public static Id saveContact(Contact c){        
+
+       insert c; 
+
+       System.debug('===>'+c.Id); 
+
+       return c.Id; 
+
+    }         
+
+} 

@@ -1,0 +1,13 @@
+<aura:component controller="demo_purpose_controller" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"> 
+
+    <aura:attribute name="RecordList" type="Contact" default="{'sObjectType':'Contact','LastName':'','Phone':'','Email':''}"/>     
+
+    <lightning:input name="Name" type="text" label="FirstName" aura:id="item1" value="{!v.RecordList.LastName}"/> 
+
+    <lightning:input name="phone" type="phone" label="Phone Number:" aura:id="item2" value="{!v.RecordList.Phone}"/> 
+
+    <lightning:input name="email" type="email" label="Email" aura:id="item3" value="{!v.RecordList.Email}" /> 
+
+    <lightning:button name="save" type="button" label="SAVE" onclick="{!c.SaveRecord}"/> 
+
+</aura:component> 
